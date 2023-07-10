@@ -1,14 +1,20 @@
 import React, { useState } from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import { createUser } from '../features/userDetailSlice';
 export default function CreateForm() {
   const [users,setUsers] = useState({});
+  const {loading} = useSelector(state => state.user)
   const dispatch =useDispatch();
   const getAllUsers=(e)=>{
     setUsers({...users,[e.target.name]:e.target.value})
-    console.log(users,"users")
+  
   }
-  const handleSubmit=()=>{
-    dispatch()
+  console.log(loading,'loading')
+  console.log(createUser,"createU")
+  const handleSubmit=(e)=>{
+    e.preventDefault()
+    console.log(users,"users")
+    dispatch( createUser(users))
   }
 
   return (
