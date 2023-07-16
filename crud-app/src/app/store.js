@@ -5,6 +5,5 @@ import  userDetail  from "../features/userDetailSlice";
 export const store = configureStore({
   reducer: {
    user:userDetail,
-   product:userDetail,
-  },
+   },
 });

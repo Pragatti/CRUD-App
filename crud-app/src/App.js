@@ -6,11 +6,14 @@ import {
   BrowserRouter,Route,Routes
 
 } from "react-router-dom";
+import Read from './Components/read';
 function App() {
   return (
     <div className="App">
-    <BrowserRouter> <Navbar/><Routes>
-      <Route path='/form/' element={<CreateForm/>}/>
+    <BrowserRouter> <Navbar/>
+    <Routes>
+      <Route  exact path='/' element={<CreateForm/>}/>
+      <Route exact path='/read' element={<Read/>}/>
     </Routes>
       </BrowserRouter>
      
