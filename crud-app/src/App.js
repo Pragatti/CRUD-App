@@ -7,6 +7,7 @@ import {
 
 } from "react-router-dom";
 import Read from './Components/read';
+import Update from './Components/update';
 function App() {
   return (
     <div className="App">
@@ -14,6 +15,7 @@ function App() {
     <Routes>
       <Route  exact path='/' element={<CreateForm/>}/>
       <Route exact path='/read' element={<Read/>}/>
+      <Route exact path='/edit/:id' element={<Update/>}/>
     </Routes>
       </BrowserRouter>
      
