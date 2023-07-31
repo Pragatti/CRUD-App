@@ -1,9 +1,17 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {Link} from "react-router-dom"
+
+import { searchData } from '../features/userDetailSlice';
 export default function Navbar() {
   const count = useSelector((state)=>state.user.users)
+  const [search,setSearch]=useState("");
+  const dispatch =useDispatch();
+  useEffect(()=>{
+    dispatch(searchData(search))
+  },[search])
+  console.log(search,"search")
   return (
     <div>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -28,8 +36,9 @@ export default function Navbar() {
         </li>
       </ul>
       <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" onChange={(e)=>setSearch(e.target.value)}/>
+        <button class="btn btn-outline-success" type="submit"
+        >Search</button>
       </form>
     </div>
   </div>

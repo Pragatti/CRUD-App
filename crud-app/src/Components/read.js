@@ -9,16 +9,51 @@ export default function Read() {
     dispatch(showUser())
     },[])
     const [showPopUp,setShowPopUp]=useState(false);
-
+    const [radio,setRadio]=useState("");
     const [id,setId]=useState();
-  const {users,loading} =useSelector((state)=>state.user)
+  const {users,loading,searchData} =useSelector((state)=>state.user)
   if(loading){
     return<h2>Loading....</h2>
   }
   return (
     <>
    {showPopUp && <CustomModals id={id} showPopUp={showPopUp} setShowPopUp={setShowPopUp}/>} 
-  
+   <div class="form-check form-check-inline">
+    <h2> All data</h2>
+          <input
+            class="form-check-input"
+            type="radio"
+            name="gender"
+           checked={radio === ""}
+          
+           
+          />
+          <label class="form-check-label">All</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="gender"
+            checked={radio === "Male"}
+            value="Male"
+            onChange={(e)=>setRadio(e.target.value)}
+          
+          />
+          <label class="form-check-label">Male</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input
+            class="form-check-input"
+            type="radio"
+            name="gender"
+            checked={radio === "Female"}
+            value="Female"
+            onChange={(e)=>setRadio(e.target.value)}
+          
+          />
+          <label class="form-check-label">Female</label>
+        </div>
       <div
         style={{
          textAlign:"center",
@@ -26,7 +61,23 @@ export default function Read() {
          
         }}
       >
-        {users && users.map((ele)=>{
+        {users &&
+         users.filter((ele)=>{
+          console.log(ele,"ele")
+          if(searchData.length === 0){
+            return ele
+          }else{
+          return ele.name.toLowerCase().includes(searchData.toLowerCase()); 
+          }
+         })
+        .filter((ele) => {
+          if(radio === "Male"){
+            return ele.gender === radio;
+          }else   if(radio === "Female"){
+            return ele.gender === radio;
+          }else return ele;
+        })
+        .map((ele)=>{
          return(
 <div class="card" key={ele.id} style={{ width: "60rem" ,margin:"0 auto", marginBottom:"12px"}}>
           <div class="card-body" >

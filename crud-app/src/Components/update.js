@@ -15,14 +15,14 @@ export default function Update() {
      setUpdate(singleUsers[0])
         }
     },[]);
-
+console.log(updateData,'updateData')
   const newUsers=(e)=>{
     setUpdate({...updateData,[e.target.name] : e.target.value})
   }
   const handleSubmit=(e)=>{
-   e.prevent.default();
+   e.preventDefault();
    dispatch(updateUser(updateData))
-   navigate('/read')
+   navigate('/read');
   }
   return (
     <div>
@@ -57,7 +57,7 @@ export default function Update() {
             type="number"
             name="age"
             class="form-control"
-            value={updateData && updateData.age}
+            value={updateData?.age}
             onChange={newUsers}
           />
         </div>
@@ -67,7 +67,7 @@ export default function Update() {
             type="radio"
             name="gender"
             value="Male"
-            checked={updateData && updateData.gender=== "male"}
+            checked={updateData?.gender=== "Male"}
             onChange={newUsers}
           />
           <label class="form-check-label">Male</label>
@@ -78,7 +78,7 @@ export default function Update() {
             type="radio"
             name="gender"
             value="Female"
-            checked={updateData && updateData.gender=== "Female"}
+            checked={updateData?.gender=== "Female"}
             onChange={newUsers}
           />
           <label class="form-check-label">Female</label>

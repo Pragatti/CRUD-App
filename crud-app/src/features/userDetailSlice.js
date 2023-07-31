@@ -70,9 +70,10 @@ export const deleteUser = createAsyncThunk(
   export const updateUser = createAsyncThunk(
     "updateUser",
     async (data, { rejectWithValue }) => {
+      console.log(data,"updateddata")
       try {
         const response = await fetch(
-          `https://61057f094b92a000171c5f3d.mockapi.io/searching ${data.id}`,
+          `https://61057f094b92a000171c5f3d.mockapi.io/searching/${data.id}`,
           {
             method: "PUT",
             headers: {
@@ -96,6 +97,12 @@ export const userDetail = createSlice({
     users: [],
     loading: false,
     error: null,
+    searchData:[],
+  },
+  reducers:{
+    searchData:(state,action)=>{
+      state.searchData = action.payload;
+    },
   },
   extraReducers: {
     [createUser.pending]: (state) => {
@@ -141,6 +148,7 @@ export const userDetail = createSlice({
     [updateUser.fulfilled]: (state, action) => {
       state.loading = false;
       state.users =state.users.map((ele)=>(ele.id === action.payload.id ?action.payload:ele))
+      {console.log(state.users,"users")}
     },
     [updateUser.rejected]: (state, action) => {
       state.loading = false;
@@ -149,3 +157,4 @@ export const userDetail = createSlice({
   },
 });
 export default userDetail.reducer;
+export const {searchData}= userDetail.actions;
