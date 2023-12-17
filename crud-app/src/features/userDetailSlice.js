@@ -5,7 +5,7 @@ export const createUser = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const response = await fetch(
-        "https://61057f094b92a000171c5f3d.mockapi.io/searching",
+        "https://61057f094b92a000171c5f3d.mockapi.io/user",
         {
           method: "POST",
           headers: {
@@ -30,7 +30,7 @@ export const showUser = createAsyncThunk(
   async (rejectWithValue) => {
     try {
       const response = await fetch(
-        "https://61057f094b92a000171c5f3d.mockapi.io/searching",
+        "https://61057f094b92a000171c5f3d.mockapi.io/user",
         {
           method: "GET",
           
@@ -50,7 +50,7 @@ export const deleteUser = createAsyncThunk(
   async (id,{rejectWithValue}) => {
     try {
       const response = await fetch(
-        `https://61057f094b92a000171c5f3d.mockapi.io/searching/${id}`,
+        `https://61057f094b92a000171c5f3d.mockapi.io/user/${id}`,
         {
           method: "Delete",
           
@@ -73,7 +73,7 @@ export const deleteUser = createAsyncThunk(
       console.log(data,"updateddata")
       try {
         const response = await fetch(
-          `https://61057f094b92a000171c5f3d.mockapi.io/searching/${data.id}`,
+          `https://61057f094b92a000171c5f3d.mockapi.io/user/${data.id}`,
           {
             method: "PUT",
             headers: {

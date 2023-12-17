@@ -4,7 +4,7 @@ const login = createAsyncThunk(
   "user/login",
   async (payload, { rejectWithValue }) => {
     try {
-      const response =await fetch("https://61057f094b92a000171c5f3d.mockapi.io/searching" ,{
+      const response =await fetch("https://61057f094b92a000171c5f3d.mockapi.io/user" ,{
         method:"POST",
         headers:{
            "content-type":"application/json",
